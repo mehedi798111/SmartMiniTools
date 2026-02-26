@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Free Online Character & Word Count Tool | SmartMiniTools</title>
+    <meta name="description" content="Free online word counter tool. Count words, characters (with and without spaces), sentences, and paragraphs. Real-time counting with instant results.">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #4361ee, #7209b7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Ad Placeholders */
+        .ad-header {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #f0f2f5, #e6e9f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 14px;
+            border: 1px dashed #cbd5e0;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Tool Section */
+        .tool-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .tool-header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+        
+        .tool-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .text-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .tool-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">SmartMiniTools</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="word-counter.html">Word Counter</a></li>
+                <li><a href="password-generator.html">Password Generator</a></li>
+                <li><a href="text-case-converter.html">Case Converter</a></li>
+                <li><a href="json-formatter.html">JSON Formatter</a></li>
+                <li><a href="age-calculator.html">Age Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header Ad -->
+    <div class="container">
+        <div class="ad-header">
+            Advertisement Space (728x90)
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="tool-header">
+            <h1>Word Counter</h1>
+            <div class="tool-description">
+                <p>Free online word counter tool that helps you count words, characters, sentences, and paragraphs in real-time. Perfect for writers, students, and SEO professionals who need to track text length for articles, essays, or social media posts.</p>
+            </div>
+        </div>
+        
+        <div class="tool-container">
+            <div class="stats-grid" id="stats">
+                <div class="stat-card">
+                    <h3 id="wordCount">0</h3>
+                    <p>Words</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="charCount">0</h3>
+                    <p>Characters (with spaces)</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="charNoSpaceCount">0</h3>
+                    <p>Characters (without spaces)</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="sentenceCount">0</h3>
+                    <p>Sentences</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="paragraphCount">0</h3>
+                    <p>Paragraphs</p>
+                </div>
+            </div>
+            
+            <textarea 
+                id="textInput" 
+                class="text-input" 
+                placeholder="Type or paste your text here..."
+                oninput="updateCounts()"
+            ></textarea>
+            
+            <div class="button-group">
+                <button class="btn" onclick="clearText()">Clear Text</button>
+                <button class="btn btn-outline" onclick="copyText()">Copy Text</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SmartMiniTools</h4>
+                <p>Your trusted platform for free online utility tools. Fast, secure, and user-friendly.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="word-counter.html">Word Counter</a></li>
+                    <li><a href="password-generator.html">Password Generator</a></li>
+                    <li><a href="text-case-converter.html">Text Case Converter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="age-calculator.html">Age Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartMiniTools. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+        
+        function updateCounts() {
+            const text = document.getElementById('textInput').value;
+            
+            // Word count
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('wordCount').textContent = words;
+            
+            // Character count (with spaces)
+            document.getElementById('charCount').textContent = text.length;
+            
+            // Character count (without spaces)
+            const textWithoutSpaces = text.replace(/\s+/g, '');
+            document.getElementById('charNoSpaceCount').textContent = textWithoutSpaces.length;
+            
+            // Sentence count
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            document.getElementById('sentenceCount').textContent = sentences;
+            
+            // Paragraph count
+            const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length;
+            document.getElementById('paragraphCount').textContent = paragraphs || (text.trim() ? 1 : 0);
+        }
+        
+        function clearText() {
+            document.getElementById('textInput').value = '';
+            updateCounts();
+        }
+        
+        function copyText() {
+            const text = document.getElementById('textInput').value;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

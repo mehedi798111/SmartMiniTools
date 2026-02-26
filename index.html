@@ -1,0 +1,493 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMiniTools - Free Online Smart Mini Tools</title>
+    <meta name="description" content="Free online smart mini tools including word counter, password generator, text case converter, JSON formatter, and age calculator. Fast, secure, and easy to use.">
+    <meta name="keywords" content="online tools, word counter, password generator, text converter, JSON formatter, age calculator">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #4361ee, #7209b7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Ad Placeholders */
+        .ad-header {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #f0f2f5, #e6e9f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 14px;
+            border: 1px dashed #cbd5e0;
+        }
+        
+        .ad-sidebar {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #f0f2f5, #e6e9f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 14px;
+            border: 1px dashed #cbd5e0;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(114, 9, 183, 0.05));
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cards */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(67, 97, 238, 0.15);
+        }
+        
+        .tool-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .tool-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .trust-item {
+            padding: 20px;
+        }
+        
+        .trust-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px;
+            background: var(--gradient);
+            border-radius: 20px;
+            color: white;
+            margin: 40px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section .btn {
+            background: white;
+            color: var(--primary);
+            font-size: 1.1rem;
+            padding: 15px 30px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Headings */
+        h2 {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 40px 15px;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">SmartMiniTools</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="word-counter.html">Word Counter</a></li>
+                <li><a href="password-generator.html">Password Generator</a></li>
+                <li><a href="text-case-converter.html">Case Converter</a></li>
+                <li><a href="json-formatter.html">JSON Formatter</a></li>
+                <li><a href="age-calculator.html">Age Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header Ad -->
+    <div class="container">
+        <div class="ad-header">
+            Advertisement Space (728x90)
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Free Online Smart Mini Tools – Fast, Secure & Easy to Use</h1>
+            <p>Your all-in-one platform for everyday utility tools. No registration, no data storage, completely free.</p>
+        </section>
+        
+        <!-- Tools Grid -->
+        <h2>Popular Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>Word Counter</h3>
+                <p>Count words, characters, sentences and paragraphs in real-time.</p>
+                <a href="word-counter.html" class="btn">Use Tool →</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>Password Generator</h3>
+                <p>Generate secure, random passwords with custom options.</p>
+                <a href="password-generator.html" class="btn">Use Tool →</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>Text Case Converter</h3>
+                <p>Convert text to uppercase, lowercase, or capitalize easily.</p>
+                <a href="text-case-converter.html" class="btn">Use Tool →</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>JSON Formatter</h3>
+                <p>Format, validate and beautify your JSON data instantly.</p>
+                <a href="json-formatter.html" class="btn">Use Tool →</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>Age Calculator</h3>
+                <p>Calculate exact age in years, months, and days.</p>
+                <a href="age-calculator.html" class="btn">Use Tool →</a>
+            </div>
+        </div>
+        
+        <!-- Trust Section -->
+        <div class="trust-section">
+            <div class="trust-item">
+                <h3>🔒 100% Secure</h3>
+                <p>All processing happens in your browser. No data leaves your device.</p>
+            </div>
+            <div class="trust-item">
+                <h3>💾 No Data Stored</h3>
+                <p>We don't store any of your information. Complete privacy guaranteed.</p>
+            </div>
+            <div class="trust-item">
+                <h3>💰 Free Forever</h3>
+                <p>All tools are completely free with no hidden charges.</p>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to boost your productivity?</h2>
+            <p>Try our tools now and experience the difference</p>
+            <a href="#tools" class="btn">Get Started Free</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SmartMiniTools</h4>
+                <p>Your trusted platform for free online utility tools. Fast, secure, and user-friendly.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="word-counter.html">Word Counter</a></li>
+                    <li><a href="password-generator.html">Password Generator</a></li>
+                    <li><a href="text-case-converter.html">Text Case Converter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="age-calculator.html">Age Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartMiniTools. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

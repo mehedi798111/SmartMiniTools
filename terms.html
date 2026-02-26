@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - SmartMiniTools</title>
+    <meta name="description" content="Read our terms of service for using SmartMiniTools free online tools and services.">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #4361ee, #7209b7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            margin: 30px 0 15px;
+        }
+        
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary);
+            margin: 20px 0 10px;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        .content-section ul {
+            margin: 15px 0 15px 20px;
+            color: var(--gray);
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">SmartMiniTools</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="word-counter.html">Word Counter</a></li>
+                <li><a href="password-generator.html">Password Generator</a></li>
+                <li><a href="text-case-converter.html">Case Converter</a></li>
+                <li><a href="json-formatter.html">JSON Formatter</a></li>
+                <li><a href="age-calculator.html">Age Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1>Terms of Service</h1>
+            <p>Last Updated: January 2024</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Agreement to Terms</h2>
+            <p>By accessing or using SmartMiniTools, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access our services.</p>
+            
+            <h2>Use of Services</h2>
+            <p>SmartMiniTools provides free online tools for personal and commercial use. You agree to use these services only for lawful purposes and in accordance with these terms.</p>
+            
+            <h3>Acceptable Use</h3>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use the tools for any illegal purpose</li>
+                <li>Attempt to reverse engineer any of our tools</li>
+                <li>Interfere with the proper functioning of the services</li>
+                <li>Bypass any measures we may use to prevent access</li>
+            </ul>
+            
+            <h2>Intellectual Property</h2>
+            <p>The SmartMiniTools name, logo, and all related content are protected by copyright and other intellectual property laws. You may not use our branding without prior written consent.</p>
+            
+            <h2>Disclaimer of Warranties</h2>
+            <p>Our tools are provided "as is" without any warranties, express or implied. We do not guarantee that the tools will be error-free or uninterrupted.</p>
+            
+            <h2>Limitation of Liability</h2>
+            <p>SmartMiniTools shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the services.</p>
+            
+            <h2>Changes to Terms</h2>
+            <p>We reserve the right to modify these terms at any time. Continued use of the services after changes constitutes acceptance of the new terms.</p>
+            
+            <h2>Contact Information</h2>
+            <p>For questions about these terms, please <a href="contact.html">contact us</a>.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SmartMiniTools</h4>
+                <p>Your trusted platform for free online utility tools. Fast, secure, and user-friendly.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="word-counter.html">Word Counter</a></li>
+                    <li><a href="password-generator.html">Password Generator</a></li>
+                    <li><a href="text-case-converter.html">Text Case Converter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="age-calculator.html">Age Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartMiniTools. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

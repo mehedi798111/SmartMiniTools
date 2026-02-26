@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Calculate Age in Years, Months, Days | SmartMiniTools</title>
+    <meta name="description" content="Free online age calculator. Calculate exact age from date of birth in years, months, and days. Also find next birthday and total days lived.">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #4361ee, #7209b7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .ad-header {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #f0f2f5, #e6e9f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 14px;
+            border: 1px dashed #cbd5e0;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .tool-header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+        
+        .tool-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .input-group {
+            margin-bottom: 30px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .age-result {
+            background: var(--gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .age-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .age-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .age-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .detail-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .detail-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .detail-card .label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .additional-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .tool-header h1 {
+                font-size: 2rem;
+            }
+            
+            .age-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">SmartMiniTools</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="word-counter.html">Word Counter</a></li>
+                <li><a href="password-generator.html">Password Generator</a></li>
+                <li><a href="text-case-converter.html">Case Converter</a></li>
+                <li><a href="json-formatter.html">JSON Formatter</a></li>
+                <li><a href="age-calculator.html">Age Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="ad-header">
+            Advertisement Space (728x90)
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="tool-header">
+            <h1>Age Calculator</h1>
+            <div class="tool-description">
+                <p>Calculate your exact age in years, months, and days. Simply enter your date of birth and get instant results. Also find out your next birthday, total days lived, and more. Perfect for age verification, planning celebrations, or just curious about your age.</p>
+            </div>
+        </div>
+        
+        <div class="tool-container">
+            <div class="input-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" max="2024-12-31">
+            </div>
+            
+            <div class="button-group">
+                <button class="btn" onclick="calculateAge()">Calculate Age</button>
+                <button class="btn btn-outline" onclick="resetForm()">Reset</button>
+            </div>
+            
+            <div class="age-result" id="ageResult">
+                <div class="age-number" id="ageDisplay">--</div>
+                <div class="age-label" id="ageLabel">Years Old</div>
+            </div>
+            
+            <div class="age-details">
+                <div class="detail-card">
+                    <div class="number" id="years">0</div>
+                    <div class="label">Years</div>
+                </div>
+                <div class="detail-card">
+                    <div class="number" id="months">0</div>
+                    <div class="label">Months</div>
+                </div>
+                <div class="detail-card">
+                    <div class="number" id="days">0</div>
+                    <div class="label">Days</div>
+                </div>
+            </div>
+            
+            <div class="additional-info" id="additionalInfo">
+                <div class="info-row">
+                    <span>Total Days Lived:</span>
+                    <span id="totalDays">0</span>
+                </div>
+                <div class="info-row">
+                    <span>Next Birthday:</span>
+                    <span id="nextBirthday">--</span>
+                </div>
+                <div class="info-row">
+                    <span>Days until next birthday:</span>
+                    <span id="daysUntilBirthday">0</span>
+                </div>
+                <div class="info-row">
+                    <span>Birthday this year:</span>
+                    <span id="birthdayThisYear">--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SmartMiniTools</h4>
+                <p>Your trusted platform for free online utility tools. Fast, secure, and user-friendly.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="word-counter.html">Word Counter</a></li>
+                    <li><a href="password-generator.html">Password Generator</a></li>
+                    <li><a href="text-case-converter.html">Text Case Converter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="age-calculator.html">Age Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartMiniTools. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+        
+        function calculateAge() {
+            const dobInput = document.getElementById('dob').value;
+            
+            if (!dobInput) {
+                alert('Please select your date of birth');
+                return;
+            }
+            
+            const dob = new Date(dobInput);
+            const today = new Date();
+            
+            // Calculate age
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
+            
+            // Adjust for negative days
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            // Adjust for negative months
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Update display
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            
+            // Main age display
+            document.getElementById('ageDisplay').textContent = years;
+            document.getElementById('ageLabel').textContent = years === 1 ? 'Year Old' : 'Years Old';
+            
+            // Calculate total days lived
+            const totalDays = Math.floor((today - dob) / (1000 * 60 * 60 * 24));
+            document.getElementById('totalDays').textContent = totalDays.toLocaleString();
+            
+            // Calculate next birthday
+            const nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+            if (nextBirthday < today) {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+            
+            const daysUntilBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('daysUntilBirthday').textContent = daysUntilBirthday;
+            
+            // Format next birthday
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('nextBirthday').textContent = nextBirthday.toLocaleDateString(undefined, options);
+            
+            // Birthday this year
+            const birthdayThisYear = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+            document.getElementById('birthdayThisYear').textContent = 
+                birthdayThisYear.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+        }
+        
+        function resetForm() {
+            document.getElementById('dob').value = '';
+            document.getElementById('years').textContent = '0';
+            document.getElementById('months').textContent = '0';
+            document.getElementById('days').textContent = '0';
+            document.getElementById('ageDisplay').textContent = '--';
+            document.getElementById('ageLabel').textContent = 'Years Old';
+            document.getElementById('totalDays').textContent = '0';
+            document.getElementById('nextBirthday').textContent = '--';
+            document.getElementById('daysUntilBirthday').textContent = '0';
+            document.getElementById('birthdayThisYear').textContent = '--';
+        }
+        
+        // Set max date to today
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dob').setAttribute('max', today);
+        };
+    </script>
+</body>
+</html>
